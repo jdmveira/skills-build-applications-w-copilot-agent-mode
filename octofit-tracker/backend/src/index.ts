@@ -8,7 +8,7 @@ import User from './models/User';
 import Workout from './models/Workout';
 
 const app = express();
-const PORT = process.env.PORT || 8000;
+const PORT = 8000;
 
 app.use(cors());
 app.use(express.json());
@@ -46,6 +46,6 @@ app.listen(PORT, () => {
   const codespaceName = process.env.CODESPACE_NAME;
   const baseUrl = codespaceName
     ? `https://${codespaceName}-8000.app.github.dev`
-    : `http://localhost:${PORT}`;
+    : 'http://localhost:8000';
   console.log(`Octofit Tracker API listening at ${baseUrl}`);
 });
