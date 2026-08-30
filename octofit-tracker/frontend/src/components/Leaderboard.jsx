@@ -1,6 +1,10 @@
 import { useEffect, useState } from 'react';
 import { fetchCollection } from '../api';
 
+const leaderboardEndpoint = import.meta.env.VITE_CODESPACE_NAME
+  ? `https://${import.meta.env.VITE_CODESPACE_NAME}-8000.app.github.dev/api/leaderboard/`
+  : 'http://localhost:8000/api/leaderboard/';
+
 function Leaderboard() {
   const [leaderboard, setLeaderboard] = useState([]);
   const [error, setError] = useState('');
@@ -8,7 +12,7 @@ function Leaderboard() {
   useEffect(() => {
     let ignore = false;
 
-    fetchCollection('leaderboard')
+    fetchCollection(leaderboardEndpoint)
       .then((data) => {
         if (!ignore) {
           setLeaderboard(data);
